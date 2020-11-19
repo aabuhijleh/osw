@@ -5,11 +5,11 @@ Make an off-site work request without suffering the pain of dealing with MenaME'
 ## Install
 
 ```sh
-$ npm i -g osw
+$ npm install -g osw
 ```
 
 ## Usage
 
 ```sh
-$ npx osw
+$ osw
 ```
