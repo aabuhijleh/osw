@@ -4,6 +4,7 @@ const dateFormat = require("dateformat");
 const getAppDataPath = require("appdata-path");
 const path = require("path");
 const fs = require("fs");
+const chalk = require("chalk");
 const makeOSWRequest = require("./request.js");
 
 const configFile = path.join(getAppDataPath(), "osw.json");
@@ -47,9 +48,9 @@ console.log(configFile, makeOSWRequest);
 
   fs.writeFileSync(configFile, JSON.stringify(inputData));
 
-  console.log("making the request...");
+  console.log(chalk.yellow("Making the request..."));
 
   await makeOSWRequest(inputData);
 
-  console.log("MenaME OSW request successfully made");
+  console.log(chalk.green("MenaME OSW request successfully made"));
 })();
