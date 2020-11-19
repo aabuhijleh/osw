@@ -1,0 +1,35 @@
+{
+  "name": "osw",
+  "version": "1.0.0",
+  "description": "Quickly make an off-site work request without suffering the pain of dealing with MenaME's UI",
+  "main": "src/index.js",
+  "bin": "src/index.js",
+  "files": [
+    "src/**/*"
+  ],
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aabuhijleh/osw.git"
+  },
+  "keywords": [
+    "mename",
+    "asal",
+    "automate",
+    "cli"
+  ],
+  "author": "Abdurrahman Abu-Hijleh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aabuhijleh/osw/issues"
+  },
+  "homepage": "https://github.com/aabuhijleh/osw#readme",
+  "dependencies": {
+    "appdata-path": "^1.0.0",
+    "dateformat": "^4.0.0",
+    "inquirer": "^7.3.3",
+    "node-fetch": "^2.6.1"
+  }
+}
