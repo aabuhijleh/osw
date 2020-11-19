@@ -1,6 +1,6 @@
 {
   "name": "osw",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Quickly make an off-site work request without suffering the pain of dealing with MenaME's UI",
   "main": "src/index.js",
   "bin": "src/index.js",
