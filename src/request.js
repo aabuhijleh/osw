@@ -1,7 +1,10 @@
 const fetch = require("node-fetch");
+const https = require("https");
 
 const request = async (data) => {
-  process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
+  const agent = new https.Agent({
+    rejectUnauthorized: false,
+  });
 
   // get cookie
   const loginResponse = await fetch(
@@ -18,6 +21,7 @@ const request = async (data) => {
       body: `employee_code=${data.employeeCode}&password64=${data.password}&password=TUU4enI5&company_code=massar&lang1=1&myaccount=1&language_code=1&submit_melogin_validation=0&submit_login_validation=0&su=&ObjectGUID1=`,
       method: "POST",
       mode: "cors",
+      agent,
     }
   );
 
@@ -45,6 +49,7 @@ const request = async (data) => {
       body: `------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="leave_date"\r\n\r\n${data.oswDate}\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="trans_internal_type"\r\n\r\n4\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="f_hour"\r\n\r\n08\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="f_min"\r\n\r\n30\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="f_AmPm"\r\n\r\nAM\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="t_hour"\r\n\r\n05\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="t_min"\r\n\r\n00\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="t_AmPm"\r\n\r\nPM\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="Support_documents"; filename=""\r\nContent-Type: application/octet-stream\r\n\r\n\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="Support_documents1"\r\n\r\n\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="notes"\r\n\r\nRotation\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="transaction_date"\r\n\r\n${data.oswDate}\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK--\r\n`,
       method: "POST",
       mode: "cors",
+      agent,
     }
   );
 };
