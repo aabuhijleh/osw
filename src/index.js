@@ -8,7 +8,6 @@ const chalk = require("chalk");
 const makeOSWRequest = require("./request.js");
 
 const configFile = path.join(getAppDataPath(), "osw.json");
-console.log(configFile, makeOSWRequest);
 
 (async () => {
   const today = () => dateFormat(new Date(), "dd/mm/yyyy");
