@@ -41,7 +41,7 @@ const configFile = path.join(getAppDataPath(), "osw.json");
 
   // add values from config file
   inputData.employeeCode = inputData.employeeCode || readValue("employeeCode");
-  inputData.password = rinputData.password || readValue("password");
+  inputData.password = inputData.password || readValue("password");
 
   fs.writeFileSync(configFile, JSON.stringify(inputData));
 
