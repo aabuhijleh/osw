@@ -40,10 +40,8 @@ const configFile = path.join(getAppDataPath(), "osw.json");
   ]);
 
   // add values from config file
-  if (!inputData.employeeCode || !inputData.password) {
-    inputData.employeeCode = readValue("employeeCode");
-    inputData.password = readValue("password");
-  }
+  inputData.employeeCode = inputData.employeeCode || readValue("employeeCode");
+  inputData.password = rinputData.password || readValue("password");
 
   fs.writeFileSync(configFile, JSON.stringify(inputData));
 
