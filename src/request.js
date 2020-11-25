@@ -3,6 +3,8 @@ const btoa = require("btoa");
 const https = require("https");
 
 const request = async (data) => {
+  // workaround MenaME SSL certificate issue
+  // see https://stackoverflow.com/questions/20082893/unable-to-verify-leaf-signature
   const agent = new https.Agent({
     rejectUnauthorized: false,
   });
