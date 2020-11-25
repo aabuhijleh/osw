@@ -59,6 +59,10 @@ const request = async (data) => {
       agent,
     }
   );
+
+  if (oswResponse.url.includes("?message=notfound")) {
+    throw new Error("Invalid credentials");
+  }
 };
 
 module.exports = request;

@@ -16,6 +16,8 @@ const configFile = path.join(getAppDataPath(), "osw.json");
 
   if (!configFileExists()) {
     fs.writeFileSync(configFile, "{}");
+  } else {
+    console.log(chalk.magenta(`Config file detected: ${configFile}`));
   }
 
   const inputData = await inquirer.prompt([
@@ -47,7 +49,13 @@ const configFile = path.join(getAppDataPath(), "osw.json");
 
   console.log(chalk.yellow("Making the request..."));
 
-  await makeOSWRequest(inputData);
-
-  console.log(chalk.green("MenaME OSW request successfully made"));
+  try {
+    await makeOSWRequest(inputData);
+    console.log(chalk.green("MenaME OSW request successfully made"));
+  } catch (err) {
+    console.error(
+      chalk.red("Request possibly failed, make sure your credentials are valid")
+    );
+    console.error(err);
+  }
 })();
