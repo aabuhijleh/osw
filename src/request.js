@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const btoa = require("btoa");
 const https = require("https");
 
 const request = async (data) => {
@@ -18,7 +19,11 @@ const request = async (data) => {
         "content-type": "application/x-www-form-urlencoded",
         "upgrade-insecure-requests": "1",
       },
-      body: `employee_code=${data.employeeCode}&password64=${data.password}&password=TUU4enI5&company_code=massar&lang1=1&myaccount=1&language_code=1&submit_melogin_validation=0&submit_login_validation=0&su=&ObjectGUID1=`,
+      body: `employee_code=${data.employeeCode}&password64=${
+        data.password
+      }&password=${btoa(
+        unescape(encodeURIComponent(data.password))
+      )}&company_code=massar&lang1=1&myaccount=1&language_code=1&submit_melogin_validation=0&submit_login_validation=0&su=&ObjectGUID1=`,
       method: "POST",
       mode: "cors",
       agent,

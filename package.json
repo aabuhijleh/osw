@@ -28,6 +28,7 @@
   "homepage": "https://github.com/aabuhijleh/osw#readme",
   "dependencies": {
     "appdata-path": "^1.0.0",
+    "btoa": "^1.2.1",
     "chalk": "^4.1.0",
     "dateformat": "^4.0.0",
     "inquirer": "^7.3.3",
