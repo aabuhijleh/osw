@@ -59,7 +59,7 @@ const request = async ({ employeeCode, password, oswDate }) => {
   );
 
   if (oswResponse.url.includes("?message=notfound")) {
-    throw new Error("Invalid credentials");
+    throw new Error("Access denied");
   }
 };
 

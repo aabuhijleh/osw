@@ -4,8 +4,11 @@ const dateFormat = require("dateformat");
 const getAppDataPath = require("appdata-path");
 const path = require("path");
 const fs = require("fs");
-const chalk = require("chalk");
-const makeOSWRequest = require("./request.js");
+const chalk = require("chalk").bold;
+const yargs = require("yargs/yargs");
+const { hideBin } = require("yargs/helpers");
+const argv = yargs(hideBin(process.argv)).argv;
+const makeOSWRequest = require("./api/mename.js");
 
 const configFile = path.join(getAppDataPath(), "osw.json");
 
@@ -14,10 +17,13 @@ const configFile = path.join(getAppDataPath(), "osw.json");
   const configFileExists = () => fs.existsSync(configFile);
   const readValue = (value) => JSON.parse(fs.readFileSync(configFile))[value];
 
-  if (!configFileExists()) {
+  if (!configFileExists() || argv.clear) {
     fs.writeFileSync(configFile, "{}");
   } else {
     console.log(chalk.magenta(`Config file detected: ${configFile}`));
+    console.log(
+      chalk.magenta(`You can use "--clear" to delete stored credentials`)
+    );
   }
 
   const inputData = await inquirer.prompt([
