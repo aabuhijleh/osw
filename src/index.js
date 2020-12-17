@@ -6,18 +6,17 @@ const path = require("path");
 const fs = require("fs");
 const chalk = require("chalk").bold;
 const yargs = require("yargs/yargs");
-const { hideBin } = require("yargs/helpers");
-const argv = yargs(hideBin(process.argv)).argv;
 const makeOSWRequest = require("./api/mename.js");
 
 const configFile = path.join(getAppDataPath(), "osw.json");
+const { clear, reason } = yargs(process.argv).argv;
 
 (async () => {
   const today = () => dateFormat(new Date(), "dd/mm/yyyy");
   const configFileExists = () => fs.existsSync(configFile);
   const readValue = (value) => JSON.parse(fs.readFileSync(configFile))[value];
 
-  if (!configFileExists() || argv.clear) {
+  if (!configFileExists() || clear) {
     fs.writeFileSync(configFile, "{}");
   } else {
     console.log(chalk.magenta(`Config file detected: ${configFile}`));
@@ -56,7 +55,7 @@ const configFile = path.join(getAppDataPath(), "osw.json");
   console.log(chalk.yellow("Making the request..."));
 
   try {
-    await makeOSWRequest({ ...inputData, reason: argv.reason || "Rotation" });
+    await makeOSWRequest({ ...inputData, reason: reason || "Rotation" });
     console.log(chalk.green("MenaME OSW request successfully made"));
   } catch (err) {
     console.error(
