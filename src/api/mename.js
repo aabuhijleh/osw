@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 const btoa = require("btoa");
 const https = require("https");
 
-const request = async ({ employeeCode, password, oswDate }) => {
+const request = async ({ employeeCode, password, oswDate, reason }) => {
   // workaround MenaME SSL certificate issue
   // see https://stackoverflow.com/questions/20082893/unable-to-verify-leaf-signature
   const agent = new https.Agent({
@@ -51,7 +51,7 @@ const request = async ({ employeeCode, password, oswDate }) => {
         "upgrade-insecure-requests": "1",
         cookie,
       },
-      body: `------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="leave_date"\r\n\r\n${oswDate}\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="trans_internal_type"\r\n\r\n4\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="f_hour"\r\n\r\n08\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="f_min"\r\n\r\n30\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="f_AmPm"\r\n\r\nAM\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="t_hour"\r\n\r\n05\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="t_min"\r\n\r\n00\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="t_AmPm"\r\n\r\nPM\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="Support_documents"; filename=""\r\nContent-Type: application/octet-stream\r\n\r\n\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="Support_documents1"\r\n\r\n\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="notes"\r\n\r\nRotation\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="transaction_date"\r\n\r\n${oswDate}\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK--\r\n`,
+      body: `------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="leave_date"\r\n\r\n${oswDate}\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="trans_internal_type"\r\n\r\n4\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="f_hour"\r\n\r\n08\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="f_min"\r\n\r\n30\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="f_AmPm"\r\n\r\nAM\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="t_hour"\r\n\r\n05\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="t_min"\r\n\r\n00\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="t_AmPm"\r\n\r\nPM\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="Support_documents"; filename=""\r\nContent-Type: application/octet-stream\r\n\r\n\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="Support_documents1"\r\n\r\n\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="notes"\r\n\r\n${reason}\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK\r\nContent-Disposition: form-data; name="transaction_date"\r\n\r\n${oswDate}\r\n------WebKitFormBoundaryeVrnTnVpAZzkZOxK--\r\n`,
       method: "POST",
       mode: "cors",
       agent,

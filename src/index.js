@@ -56,7 +56,7 @@ const configFile = path.join(getAppDataPath(), "osw.json");
   console.log(chalk.yellow("Making the request..."));
 
   try {
-    await makeOSWRequest(inputData);
+    await makeOSWRequest({ ...inputData, reason: argv.reason || "Rotation" });
     console.log(chalk.green("MenaME OSW request successfully made"));
   } catch (err) {
     console.error(
