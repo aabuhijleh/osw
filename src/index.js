@@ -18,11 +18,6 @@ const { clear, reason } = yargs(process.argv).argv;
 
   if (!configFileExists() || clear) {
     fs.writeFileSync(configFile, "{}");
-  } else {
-    console.log(chalk.magenta(`Config file detected: ${configFile}`));
-    console.log(
-      chalk.magenta(`You can use "--clear" to delete stored credentials`)
-    );
   }
 
   const inputData = await inquirer.prompt([
