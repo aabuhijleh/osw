@@ -31,7 +31,9 @@
     "btoa": "^1.2.1",
     "chalk": "^4.1.0",
     "dateformat": "^4.0.0",
+    "hijrah-date": "^1.0.3",
     "inquirer": "^7.3.3",
+    "is-dst": "^1.0.0",
     "node-fetch": "^2.6.1",
     "yargs": "^16.1.1"
   }

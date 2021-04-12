@@ -6,10 +6,11 @@ const path = require("path");
 const fs = require("fs");
 const chalk = require("chalk").bold;
 const yargs = require("yargs/yargs");
+const getWorkPeriod = require("./utils/getWorkPeriod.js");
 const makeOSWRequest = require("./api/mename.js");
 
 const configFile = path.join(getAppDataPath(), "osw.json");
-const { clear, reason } = yargs(process.argv).argv;
+const { clear, reason, start, end } = yargs(process.argv).argv;
 
 (async () => {
   const today = () => dateFormat(new Date(), "dd/mm/yyyy");
@@ -49,8 +50,15 @@ const { clear, reason } = yargs(process.argv).argv;
 
   console.log(chalk.yellow("Making the request..."));
 
+  const workPeriod = getWorkPeriod(inputData.oswDate);
+
   try {
-    await makeOSWRequest({ ...inputData, reason: reason || "Rotation" });
+    await makeOSWRequest({
+      ...inputData,
+      reason: reason || "Rotation",
+      start: start || workPeriod.start,
+      end: end || workPeriod.end,
+    });
     console.log(chalk.green("MenaME OSW request successfully made"));
   } catch (err) {
     console.error(
