@@ -6,7 +6,6 @@ const path = require("path");
 const fs = require("fs");
 const chalk = require("chalk").bold;
 const yargs = require("yargs/yargs");
-const package = require("../package.json");
 const getAvailableOptions = require("./utils/getAvailableOptions.js");
 const getWorkPeriod = require("./utils/getWorkPeriod.js");
 const makeOSWRequest = require("./api/mename.js");
