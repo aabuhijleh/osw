@@ -12,12 +12,9 @@ const getWorkPeriod = require("./utils/getWorkPeriod.js");
 const makeOSWRequest = require("./api/mename.js");
 
 const configFile = path.join(getAppDataPath(), "osw.json");
-const { version, help, clear, reason, start, end } = yargs(process.argv).argv;
-
-if (version) {
-  console.log(package.version);
-  return;
-}
+const { help, clear, reason, start, end } = yargs(process.argv).help(
+  false
+).argv;
 
 if (help) {
   console.log(getAvailableOptions());
