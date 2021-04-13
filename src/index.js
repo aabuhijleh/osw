@@ -6,11 +6,23 @@ const path = require("path");
 const fs = require("fs");
 const chalk = require("chalk").bold;
 const yargs = require("yargs/yargs");
+const package = require("../package.json");
+const getAvailableOptions = require("./utils/getAvailableOptions.js");
 const getWorkPeriod = require("./utils/getWorkPeriod.js");
 const makeOSWRequest = require("./api/mename.js");
 
 const configFile = path.join(getAppDataPath(), "osw.json");
-const { clear, reason, start, end } = yargs(process.argv).argv;
+const { version, help, clear, reason, start, end } = yargs(process.argv).argv;
+
+if (version) {
+  console.log(package.version);
+  return;
+}
+
+if (help) {
+  console.log(getAvailableOptions());
+  return;
+}
 
 (async () => {
   const today = () => dateFormat(new Date(), "dd/mm/yyyy");

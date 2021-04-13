@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "bin": "src/index.js",
   "files": [
-    "src/**/*"
+    "src/**/*",
+    "README.md"
   ],
   "scripts": {
     "start": "node src/index.js"

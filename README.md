@@ -11,9 +11,11 @@ $ npm install -g osw
 ## Usage
 
 ```
-$ osw [--clear] [--reason NOTES] [--start TIME] [--end TIME]
+$ osw [--version] [--clear] [--reason NOTES] [--start TIME] [--end TIME]
 
 Available options:
+  --help                   Show this help text
+  --version                Print version of the program
   --clear                  Clear stored credentials
   --reason NOTES           Add custom notes, default: "Rotation"
   --start TIME             Add custom start time, default: "08:30" ("09:00"
