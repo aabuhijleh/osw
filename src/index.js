@@ -69,9 +69,6 @@ if (help) {
     });
     console.log(chalk.green("MenaME OSW request successfully made"));
   } catch (err) {
-    console.error(
-      chalk.red("Request possibly failed, make sure your credentials are valid")
-    );
-    console.error(err);
+    console.error(chalk.red("Something went wrong"), err);
   }
 })();

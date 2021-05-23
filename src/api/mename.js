@@ -69,6 +69,12 @@ const request = async ({
   if (oswResponse.url.includes("?message=notfound")) {
     throw new Error("Access denied");
   }
+
+  if (!oswResponse.ok) {
+    throw new Error(
+      `Request failed, status:[${oswResponse.status}], statusText:[${oswResponse.statusText}]`
+    );
+  }
 };
 
 module.exports = request;
