@@ -6,19 +6,34 @@ const path = require("path");
 const fs = require("fs");
 const chalk = require("chalk").bold;
 const yargs = require("yargs/yargs");
-const getAvailableOptions = require("./utils/getAvailableOptions.js");
 const getWorkPeriod = require("./utils/getWorkPeriod.js");
 const makeOSWRequest = require("./api/mename.js");
 
 const configFile = path.join(getAppDataPath(), "osw.json");
-const { help, clear, reason, start, end } = yargs(process.argv).help(
-  false
-).argv;
-
-if (help) {
-  console.log(getAvailableOptions());
-  return;
-}
+const { clear, reason, start, end } = yargs(process.argv)
+  .option("clear", {
+    alias: "c",
+    type: "boolean",
+    description: "Clear stored credentials",
+  })
+  .option("reason", {
+    alias: "r",
+    type: "string",
+    description: "Add OSW request notes",
+    default: "Rotation",
+  })
+  .option("start", {
+    alias: "s",
+    type: "string",
+    description: "Add start time",
+    defaultDescription: "ASAL start working hour",
+  })
+  .option("end", {
+    alias: "e",
+    type: "string",
+    description: "Add end time",
+    defaultDescription: "ASAL end working hour",
+  }).argv;
 
 (async () => {
   const today = () => dateFormat(new Date(), "dd/mm/yyyy");
@@ -63,7 +78,7 @@ if (help) {
   try {
     await makeOSWRequest({
       ...inputData,
-      reason: reason || "Rotation",
+      reason: reason,
       start: start || workPeriod.start,
       end: end || workPeriod.end,
     });

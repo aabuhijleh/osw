@@ -11,15 +11,13 @@ $ npm install -g osw
 ## Usage
 
 ```
-$ osw [--version] [--clear] [--reason NOTES] [--start TIME] [--end TIME]
+$ osw
 
-Available options:
-  --help                   Show this help text
-  --version                Print version of the program
-  --clear                  Clear stored credentials
-  --reason NOTES           Add notes, default: "Rotation"
-  --start TIME             Add start time, default: "08:30" ("09:00"
-                           in Ramadan)
-  --end TIME               Add end time, default "05:00" ("05:30"
-                           in DST, "03:30" in Ramadan)
+Options:
+      --help     Show help                                             [boolean]
+      --version  Show version number                                   [boolean]
+  -c, --clear    Clear stored credentials                              [boolean]
+  -r, --reason   Add OSW request notes            [string] [default: "Rotation"]
+  -s, --start    Add start time      [string] [default: ASAL start working hour]
+  -e, --end      Add end time          [string] [default: ASAL end working hour]
 ```
