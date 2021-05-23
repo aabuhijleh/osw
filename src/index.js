@@ -78,7 +78,7 @@ const { clear, reason, start, end } = yargs(process.argv)
   try {
     await makeOSWRequest({
       ...inputData,
-      reason: reason,
+      reason,
       start: start || workPeriod.start,
       end: end || workPeriod.end,
     });
