@@ -9,7 +9,7 @@ const getDateFromDateString = (dateString) => {
 const isRamadan = (date) =>
   new HijrahDate(date).format("MMMM", "en") === "Ramadan";
 
-const getWorkPeriod = (dateString) => {
+const getWorkingHours = (dateString) => {
   const date = getDateFromDateString(dateString);
 
   let start = "08:30";
@@ -23,4 +23,4 @@ const getWorkPeriod = (dateString) => {
   return { start, end };
 };
 
-module.exports = getWorkPeriod;
+module.exports = getWorkingHours;

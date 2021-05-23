@@ -6,7 +6,7 @@ const path = require("path");
 const fs = require("fs");
 const chalk = require("chalk").bold;
 const yargs = require("yargs/yargs");
-const getWorkPeriod = require("./utils/getWorkPeriod.js");
+const getWorkingHours = require("./utils/getWorkingHours.js");
 const makeOSWRequest = require("./api/mename.js");
 
 const configFile = path.join(getAppDataPath(), "osw.json");
@@ -73,7 +73,7 @@ const { clear, reason, start, end } = yargs(process.argv)
 
   console.log(chalk.yellow("Making the request..."));
 
-  const workPeriod = getWorkPeriod(inputData.oswDate);
+  const workPeriod = getWorkingHours(inputData.oswDate);
 
   try {
     await makeOSWRequest({
